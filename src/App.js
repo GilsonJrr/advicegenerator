@@ -1,23 +1,44 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from "react";
+
 import './App.css';
+import Blogo from '../src/img/Blogo.png'
+
+import api from './services/api';
 
 function App() {
+
+  const [advice, setAdvice] = useState ([]);
+
+  const refresh = () => {
+    api
+      .get("advice")
+      .then((response) => setAdvice(response.data))
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  };
+  
+  useEffect(refresh, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className='Back'>
+
+        <p1>ADVICE #{advice.slip.id}</p1>
+        <p2>" {advice.slip.advice} "</p2>
+
+        <div className='Lines'>
+          <div className='line'/>
+          <div className='Cotes'/>
+          <div className='Cotes'/>
+          <div className='line'/>
+        </div>
+
+        <button onClick={refresh}>
+          <img src={Blogo}/>
+        </button>
+        
+      </div>
     </div>
   );
 }
