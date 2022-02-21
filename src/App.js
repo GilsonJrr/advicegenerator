@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import './App.css';
 
-import Blogo from '../src/img/Blogo.png'
+import Dice from '../src/img/icon-dice.svg'
 
 import api from './services/api';
 
@@ -30,7 +30,7 @@ function App() {
 
   setTimeout(() => {
     setShow(true)
-  }, 500);
+  }, 1000);
 
   return (
     <div className="App">
@@ -43,15 +43,10 @@ function App() {
           </div>
         }
 
-        <div className='Lines'>
-          <div className='line'/>
-          <div className='Cotes'/>
-          <div className='Cotes'/>
-          <div className='line'/>
-        </div>
+        <div className="Divider"/>
 
         <button onClick={refresh}>
-          <img src={Blogo} alt="diceLogo" />
+          <img src={Dice} alt="diceLogo" />
         </button>
         
       </div>
